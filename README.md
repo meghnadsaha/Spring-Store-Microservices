@@ -6,7 +6,6 @@
  logging and monitoring, Java SE 14, MySQL, and MongoDB databases, all components developed with TDD in mind, covering integration & performance testing, and many more.
 
 ------
-I am developing this project as stages, and all such steps are documented under the project **Springy Store μServices** [wiki page](https://github.com/mohamed-taman/Springy-Store-Microservices/wiki). Each such stage will be a release in its own, so you can go back and forward between versions to see the differences and how adding things solve specific problems we face.
 
 <u>For example, </u> in the first stage (1st release), I just created project structure, essential services' skeleton, integration between them, and finally write integration testing as well as semi-automated testing for the complete services' functionality.
 
