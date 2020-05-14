@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.siriusxi.ms.store</groupId>
+    <artifactId>store-aggregator</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <name>Springy Store Aggregator</name>
+    <description>Aggregator pom project for all Springy Store μServices</description>
+    <packaging>pom</packaging>
+
+    <!-- Start - Springy Store Project Owner -->
+    <developers>
+        <developer>
+            <id>0001</id>
+            <name>Mohamed Taman</name>
+            <email>mohamed.taman@gmail.com</email>
+            <roles>
+                <role>
+                    Sr. Enterprise Architect
+                </role>
+                <role>
+                    Lead Software Architect
+                </role>
+            </roles>
+        </developer>
+    </developers>
+    <!-- End - Springy Store Project Owner -->
+    <!-- Start - Springy Store source repository -->
+    <scm>
+        <connection>https://github.com/mohamed-taman/Springy-Store-Microservices.git</connection>
+        <developerConnection>git@github.com:mohamed-taman/Springy-Store-Microservices.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+    <!-- End - Springy Store source repository -->
+    <!-- Start - Springy Store issue management -->
+    <issueManagement>
+        <system>GitHub</system>
+        <url>https://github.com/mohamed-taman/Springy-Store-Microservices/issues</url>
+    </issueManagement>
+    <!-- End - Springy Store issue management -->
+
+    <properties>
+        <maven.install.skip>true</maven.install.skip>
+        <maven.deploy.skip>true</maven.deploy.skip>
+    </properties>
+
+    <modules>
+        <module>store-base/store-build-chassis</module>
+        <module>store-base/store-cloud-chassis</module>
+        <module>store-base/store-service-chassis</module>
+        <module>store-common/store-api</module>
+        <module>store-common/store-utils</module>
+        <module>store-services/product-service</module>
+        <module>store-services/review-service</module>
+        <module>store-services/recommendation-service</module>
+        <module>store-services/store-service</module>
+        <module>store-cloud-infra/eureka-server</module>
+        <module>store-cloud-infra/edge-server</module>
+        <module>store-cloud-infra/authorization-server</module>
+    </modules>
+</project>

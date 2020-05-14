@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.siriusxi.ms.store</groupId>
+        <artifactId>store-cloud-chassis</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>../../store-cloud-chassis/pom.xml</relativePath>
+    </parent>
+
+    <artifactId>store-service-chassis</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <name>Springy Store Chassis</name>
+    <description>Parent pom project for Springy μServices</description>
+    <packaging>pom</packaging>
+
+    <dependencies>
+        <!-- Start - Spring Stream processing using "RabbitMQ massaging" -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-stream-rabbit</artifactId>
+        </dependency>
+        <!-- End - Spring Stream processing using "RabbitMQ massaging" -->
+        <!-- Start - Spring Stream processing using "Kafka" -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-stream-kafka</artifactId>
+        </dependency>
+        <!-- End - Spring Stream processing using "Kafka" -->
+        <!-- Start - Spring cloud Eureka service discovery client -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+        <!-- End - Spring cloud Eureka service discovery client -->
+        <!-- End - Cloud dependencies  -->
+        <!-- End - Core spring dependencies -->
+
+        <!-- Start - Testing dependencies -->
+        <!-- Start - Spring reactor testing library -->
+        <dependency>
+            <groupId>io.projectreactor</groupId>
+            <artifactId>reactor-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!-- End - Spring reactor testing library -->
+        <!-- Start - Spring Stream testing library -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-stream-test-support</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!-- End - Spring Stream testing library -->
+        <!-- End - Testing dependencies -->
+
+        <!-- Start - Store application business dependencies -->
+        <dependency>
+            <groupId>com.siriusxi.ms.store</groupId>
+            <artifactId>store-api</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.siriusxi.ms.store</groupId>
+            <artifactId>store-utils</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <!-- End - Store application business dependencies -->
+
+        <!-- Start - Other dependencies -->
+        <!-- Start - POJO <-> Entity conversion made easy -->
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>${org.mapstruct.version}</version>
+        </dependency>
+        <!-- End - POJO <-> Entity conversion made easy -->
+        <!-- End - Other dependencies -->
+    </dependencies>
+</project>

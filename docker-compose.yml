@@ -1,0 +1,132 @@
+version: '3.7' ## Latest version works with Docker Engine release 18.06.0+
+
+services:
+  # Start - Core Microservices
+  ## Start - Product service definition
+  product:
+    build: store-services/product-service
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      - mongodb
+      - rabbitmq
+  ## End - Product service definition
+
+  ## Start - Recommendation service definition
+  recommendation:
+    build: store-services/recommendation-service
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      - mongodb
+      - rabbitmq
+  ## End - Recommendation service definition
+
+  ## Start - Review service definition
+  review:
+    build: store-services/review-service
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      - mysql
+      - rabbitmq
+    restart: on-failure
+  ## End - Review service definition
+
+  ## Start - Store service definition
+  store:
+    build: store-services/store-service
+    environment:
+      # - SPRING_PROFILES_ACTIVE=external-OAuth-Provider
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      - rabbitmq
+  ## End - Store service definition
+  # End - Core Microservices
+
+  # Start - Cloud Infrastructure
+  ## Start - Eureka Service Discovery definition
+  eureka:
+    build: store-cloud-infra/eureka-server
+    restart: on-failure
+  ## End - Eureka Service Discovery definition
+
+  ## Start - Edge Server definition
+  gateway:
+    build: store-cloud-infra/edge-server
+    ports:
+      - "8443:8443"
+    environment:
+      # - SPRING_PROFILES_ACTIVE=external-OAuth-Provider
+      - SPRING_PROFILES_ACTIVE=docker
+      # dynamically change certificate at run time
+      - SERVER_SSL_KEY_STORE=file:/keystore/edge.p12
+      - SERVER_SSL_KEY_STORE_PASSWORD=password
+    volumes:
+      - $PWD/config/keystore:/keystore
+    depends_on:
+      - eureka
+    restart: on-failure
+  ## End - Edge Server definition
+
+  ## Start - Edge Server definition
+  auth-server:
+    build: store-cloud-infra/authorization-server
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      - eureka
+    restart: on-failure
+  ## End - Edge Server definition
+  # End - Cloud Infrastructure
+
+  # Start - Data and transport Infrastructure
+  ## Start - mongodb database definition
+  ### $ mongo
+  mongodb:
+    image: mongo:4.2.6-bionic
+    ports:
+      - "27017-27019:27017-27019"
+    healthcheck:
+      test: "mongo --eval 'db.stats().ok'"
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 40s
+    restart: on-failure
+  ## End - mongodb database definition
+
+  ## Start - MySql database definition
+  ### $ mysql -uroot -h127.0.0.1 -p
+  mysql:
+    image: mysql:8.0.20
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpwd
+      - MYSQL_DATABASE=review-db
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=pwd
+      - MYSQL_ROOT_HOST=%
+    healthcheck:
+      test: "/usr/bin/mysql --user=user --password=pwd --execute \"SHOW DATABASES;\""
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    restart: on-failure
+  ## End - MySql database definition
+
+  ## Start - RabbitMQ Messaging service
+  rabbitmq:
+    image: rabbitmq:3.8.3-management
+    ports:
+      - 5672:5672
+      - 15672:15672
+    healthcheck:
+      test: ["CMD", "rabbitmqctl", "status"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    restart: on-failure
+  ## End - RabbitMQ Messaging service
+  # End - Data and transport Infrastructure

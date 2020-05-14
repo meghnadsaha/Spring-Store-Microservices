@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.siriusxi.ms.store</groupId>
+        <artifactId>store-service-chassis</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>../../store-base/store-service-chassis/pom.xml</relativePath>
+    </parent>
+
+    <artifactId>review-service</artifactId>
+    <name>Review Service</name>
+    <version>1.0-SNAPSHOT</version>
+    <description>Review Service Spring Boot based project</description>
+    <packaging>jar</packaging>
+
+    <dependencies>
+        <!-- Start - Spring boot dependencies -->
+        <!-- Start - JPA data layer -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <!-- End - JPA Data layer -->
+        <!-- Start - Object validation layer -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+        <!-- End - Object validation layer -->
+        <!-- End - Spring boot dependencies -->
+
+        <!-- Start - Database migration dependencies -->
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+        </dependency>
+        <!-- End - Database migration dependencies -->
+        <!-- Start - Database driver for mysql -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <!-- End - Database driver for mysql -->
+        <!-- End - Projects dependencies -->
+
+        <!-- Start - Data technology test layer -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!-- End - Data technology test layer -->
+    </dependencies>
+</project>
