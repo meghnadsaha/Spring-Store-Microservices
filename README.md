@@ -115,7 +115,7 @@ To build and run the test cases for each service & shared modules in the project
 To build and install `store-build-chassis`, `store-utils`, `store-api`, `store-chassis` libraries, from the root folder `springy-store-microservices` run the following commands:
 
 ```bash
-mohamed.taman@DTLNV8 ~/springy-store-microservices 
+meghnadsaha ~/springy-store-microservices 
 λ ./setup.sh
 ```
 
