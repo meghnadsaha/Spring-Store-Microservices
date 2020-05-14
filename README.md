@@ -101,7 +101,7 @@ All that you want to do is just fire up your IDE **->** open or import the paren
 The first thing to do is to open **git bash** command line, and then simply you can clone the project under any of your favorite places as the following:
 
 ```bash
-> git clone https://github.com/mohamed-taman/Springy-Store-Microservices.git
+> git clone https://github.com/meghnadsaha/Spring-Store-Microservices.git
 ```
 
 ### Build & Test Them In Isolation
