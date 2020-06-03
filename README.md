@@ -66,7 +66,7 @@ The following topics are going to be covered in this 1st stage (other stages top
 
 ### System Boundary - μServices Landscape (Release 5.0-Latest)
 
-![System Boundary](docs/diagram/app_ms_landscape.png)
+![System Boundary](docs/diagram/app_ms_landsca.png)
 
 ### Required software
 
